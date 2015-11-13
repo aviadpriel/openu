@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		7992BBF81BF133AE0003D89E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992BBF71BF133AE0003D89E /* main.swift */; };
-		7992BC001BF1346E0003D89E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992BBFF1BF1346E0003D89E /* Stack.swift */; };
-		7992BC1F1BF13E8B0003D89E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992BBFF1BF1346E0003D89E /* Stack.swift */; };
 		7992BC211BF13EBC0003D89E /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992BC201BF13EBC0003D89E /* StackTests.swift */; };
+		79BF6E1F1BF65B31000A8F0A /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E1E1BF65B31000A8F0A /* Queue.swift */; };
+		79BF6E221BF65B66000A8F0A /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E211BF65B66000A8F0A /* Stack.swift */; };
+		79BF6E231BF65BF8000A8F0A /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E1E1BF65B31000A8F0A /* Queue.swift */; };
+		79BF6E241BF65BF8000A8F0A /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E211BF65B66000A8F0A /* Stack.swift */; };
+		79BF6E261BF65D97000A8F0A /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E251BF65D97000A8F0A /* QueueTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,11 +31,13 @@
 /* Begin PBXFileReference section */
 		7992BBF41BF133AE0003D89E /* DataStructures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataStructures; sourceTree = BUILT_PRODUCTS_DIR; };
 		7992BBF71BF133AE0003D89E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		7992BBFF1BF1346E0003D89E /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		7992BC111BF13D100003D89E /* project.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = project.xcworkspace; path = DataStructures.xcodeproj/project.xcworkspace; sourceTree = "<group>"; };
 		7992BC171BF13DC90003D89E /* DataStructuresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataStructuresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7992BC1B1BF13DC90003D89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7992BC201BF13EBC0003D89E /* StackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
+		79BF6E1E1BF65B31000A8F0A /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Queue/Queue.swift; sourceTree = "<group>"; };
+		79BF6E211BF65B66000A8F0A /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Stack/Stack.swift; sourceTree = "<group>"; };
+		79BF6E251BF65D97000A8F0A /* QueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,8 @@
 		7992BBF61BF133AE0003D89E /* DataStructures */ = {
 			isa = PBXGroup;
 			children = (
+				79BF6E271BF65FBB000A8F0A /* Graph */,
+				79BF6E201BF65B37000A8F0A /* Queue */,
 				7992BBFE1BF134620003D89E /* Stack */,
 				7992BBF71BF133AE0003D89E /* main.swift */,
 			);
@@ -84,7 +91,7 @@
 		7992BBFE1BF134620003D89E /* Stack */ = {
 			isa = PBXGroup;
 			children = (
-				7992BBFF1BF1346E0003D89E /* Stack.swift */,
+				79BF6E211BF65B66000A8F0A /* Stack.swift */,
 			);
 			name = Stack;
 			sourceTree = "<group>";
@@ -94,8 +101,24 @@
 			children = (
 				7992BC1B1BF13DC90003D89E /* Info.plist */,
 				7992BC201BF13EBC0003D89E /* StackTests.swift */,
+				79BF6E251BF65D97000A8F0A /* QueueTests.swift */,
 			);
 			path = DataStructuresTests;
+			sourceTree = "<group>";
+		};
+		79BF6E201BF65B37000A8F0A /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				79BF6E1E1BF65B31000A8F0A /* Queue.swift */,
+			);
+			name = Queue;
+			sourceTree = "<group>";
+		};
+		79BF6E271BF65FBB000A8F0A /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Graph;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7992BC001BF1346E0003D89E /* Stack.swift in Sources */,
+				79BF6E221BF65B66000A8F0A /* Stack.swift in Sources */,
+				79BF6E1F1BF65B31000A8F0A /* Queue.swift in Sources */,
 				7992BBF81BF133AE0003D89E /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,8 +219,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7992BC1F1BF13E8B0003D89E /* Stack.swift in Sources */,
+				79BF6E231BF65BF8000A8F0A /* Queue.swift in Sources */,
+				79BF6E241BF65BF8000A8F0A /* Stack.swift in Sources */,
 				7992BC211BF13EBC0003D89E /* StackTests.swift in Sources */,
+				79BF6E261BF65D97000A8F0A /* QueueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +364,7 @@
 				7992BBFD1BF133AE0003D89E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7992BC1C1BF13DC90003D89E /* Build configuration list for PBXNativeTarget "DataStructuresTests" */ = {
 			isa = XCConfigurationList;
@@ -346,6 +373,7 @@
 				7992BC1E1BF13DC90003D89E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -16,14 +16,19 @@ public class Stack<T> {
     }
     
     func isEmpty() -> (Bool) {
-        return self.elements.count == 0;
+        return self.elements.isEmpty
     }
     
     func push(element: T) {
+        elements.append(element)
     }
     
-    func pop() -> (T) {
-        return elements.first!
+    func pop() -> (T?) {
+        return elements.popLast()
+    }
+    
+    func peek() -> (T?) {
+        return elements.last;
     }
     
 }

@@ -19,15 +19,58 @@ class StackTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssertEqual(1, 1)
-        
+    func testNewEmptyStack() {
         let s = Stack<Int>()
-        
+        XCTAssertTrue(s.isEmpty())
     }
     
     
+    func testIsEmptyAfterAddingItems() {
+        let s = Stack<Int>()
+        s.push(4)
+        XCTAssertFalse(s.isEmpty())
+    }
     
+    func testIsEmptyAfterRemovingItem() {
+        let s = Stack<Int>()
+        s.push(5)
+        s.pop()
+        XCTAssertTrue(s.isEmpty())
+    }
+    
+    func testIsEmptyAfterRemovingItems() {
+        let s = Stack<Int>()
+        s.push(5)
+        s.push(2)
+        s.push(6)
+        s.pop()
+        s.pop()
+        s.pop()
+        XCTAssertTrue(s.isEmpty())
+    }
+    
+    func testPopWithNonEmptyStack() {
+        let s = Stack<String>()
+        s.push("One")
+        s.push("Two")
+        s.push("Three")
+        
+        XCTAssertEqual(s.pop(), "Three")
+        XCTAssertEqual(s.pop(), "Two")
+        XCTAssertEqual(s.pop(), "One")
+    }
+    
+    func testPopOnEmptyStack() {
+        let s = Stack<String>()
+        XCTAssertNil(s.pop())
+    }
+    
+    func testPeek() {
+        let s = Stack<String>()
+        s.push("One")
+        s.push("two")
+        
+        XCTAssertEqual(s.peek(), "two")
+        XCTAssertEqual(s.peek(), "two")
+    }
 }
