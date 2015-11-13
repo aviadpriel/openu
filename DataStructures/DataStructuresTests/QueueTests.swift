@@ -73,4 +73,18 @@ class QueueTests: XCTestCase {
         XCTAssertEqual(q.peek(), "One")
         XCTAssertEqual(q.peek(), "One")
     }
+    
+    func testQueuePerformance() {
+        
+        measureBlock() {
+            let q = Queue<Int>()
+            for i in 1...50000 {
+                q.enqueue(i)
+            }
+            
+            while !q.isEmpty() {
+                q.denqueue()
+            }
+        }
+    }
 }

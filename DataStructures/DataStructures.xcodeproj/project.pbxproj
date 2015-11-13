@@ -14,6 +14,13 @@
 		79BF6E231BF65BF8000A8F0A /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E1E1BF65B31000A8F0A /* Queue.swift */; };
 		79BF6E241BF65BF8000A8F0A /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E211BF65B66000A8F0A /* Stack.swift */; };
 		79BF6E261BF65D97000A8F0A /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E251BF65D97000A8F0A /* QueueTests.swift */; };
+		79BF6E291BF66019000A8F0A /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E281BF66019000A8F0A /* Graph.swift */; };
+		79BF6E2A1BF66019000A8F0A /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E281BF66019000A8F0A /* Graph.swift */; };
+		79BF6E2C1BF660C7000A8F0A /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E2B1BF660C7000A8F0A /* Vertex.swift */; };
+		79BF6E2D1BF660C7000A8F0A /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E2B1BF660C7000A8F0A /* Vertex.swift */; };
+		79BF6E2F1BF6623C000A8F0A /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E2E1BF6623C000A8F0A /* Edge.swift */; };
+		79BF6E301BF6623C000A8F0A /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E2E1BF6623C000A8F0A /* Edge.swift */; };
+		79BF6E361BF6964A000A8F0A /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E341BF6964A000A8F0A /* GraphTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +45,10 @@
 		79BF6E1E1BF65B31000A8F0A /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Queue/Queue.swift; sourceTree = "<group>"; };
 		79BF6E211BF65B66000A8F0A /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = Stack/Stack.swift; sourceTree = "<group>"; };
 		79BF6E251BF65D97000A8F0A /* QueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
+		79BF6E281BF66019000A8F0A /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		79BF6E2B1BF660C7000A8F0A /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		79BF6E2E1BF6623C000A8F0A /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		79BF6E341BF6964A000A8F0A /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +113,7 @@
 				7992BC1B1BF13DC90003D89E /* Info.plist */,
 				7992BC201BF13EBC0003D89E /* StackTests.swift */,
 				79BF6E251BF65D97000A8F0A /* QueueTests.swift */,
+				79BF6E341BF6964A000A8F0A /* GraphTests.swift */,
 			);
 			path = DataStructuresTests;
 			sourceTree = "<group>";
@@ -117,6 +129,9 @@
 		79BF6E271BF65FBB000A8F0A /* Graph */ = {
 			isa = PBXGroup;
 			children = (
+				79BF6E281BF66019000A8F0A /* Graph.swift */,
+				79BF6E2B1BF660C7000A8F0A /* Vertex.swift */,
+				79BF6E2E1BF6623C000A8F0A /* Edge.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -209,8 +224,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79BF6E291BF66019000A8F0A /* Graph.swift in Sources */,
 				79BF6E221BF65B66000A8F0A /* Stack.swift in Sources */,
+				79BF6E2F1BF6623C000A8F0A /* Edge.swift in Sources */,
 				79BF6E1F1BF65B31000A8F0A /* Queue.swift in Sources */,
+				79BF6E2C1BF660C7000A8F0A /* Vertex.swift in Sources */,
 				7992BBF81BF133AE0003D89E /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,10 +237,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79BF6E361BF6964A000A8F0A /* GraphTests.swift in Sources */,
 				79BF6E231BF65BF8000A8F0A /* Queue.swift in Sources */,
 				79BF6E241BF65BF8000A8F0A /* Stack.swift in Sources */,
+				79BF6E301BF6623C000A8F0A /* Edge.swift in Sources */,
 				7992BC211BF13EBC0003D89E /* StackTests.swift in Sources */,
 				79BF6E261BF65D97000A8F0A /* QueueTests.swift in Sources */,
+				79BF6E2A1BF66019000A8F0A /* Graph.swift in Sources */,
+				79BF6E2D1BF660C7000A8F0A /* Vertex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
