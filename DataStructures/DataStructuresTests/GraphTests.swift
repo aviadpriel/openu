@@ -137,4 +137,44 @@ class GraphTesbts: XCTestCase {
         XCTAssertFalse(neighborsW.contains(u))
     }
     
+    func testInDegree() {
+        let g = Graph<Int>()
+        g.directed = true
+        let v = Vertex(data: 5)
+        let u = Vertex(data: 6)
+        let w = Vertex(data: 7)
+        
+        let e1 = Edge(source: v, destination: u)
+        let e2 = Edge(source: v, destination: w)
+        let e3 = Edge(source: w, destination: u)
+        
+        g.addEdge(e1)
+        g.addEdge(e2)
+        g.addEdge(e3)
+        
+        XCTAssertEqual(v.inDegree, 0)
+        XCTAssertEqual(w.inDegree, 1)
+        XCTAssertEqual(u.inDegree, 2)
+    }
+    
+    func testOutDegree() {
+        let g = Graph<Int>()
+        g.directed = true
+        let v = Vertex(data: 5)
+        let u = Vertex(data: 6)
+        let w = Vertex(data: 7)
+        
+        let e1 = Edge(source: v, destination: u)
+        let e2 = Edge(source: v, destination: w)
+        let e3 = Edge(source: w, destination: u)
+        
+        g.addEdge(e1)
+        g.addEdge(e2)
+        g.addEdge(e3)
+        
+        XCTAssertEqual(v.outDegree, 2)
+        XCTAssertEqual(w.outDegree, 1)
+        XCTAssertEqual(u.outDegree, 0)
+    }
+    
 }

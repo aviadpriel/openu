@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79602E8E1C5D5BB100B80136 /* VertexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79602E8D1C5D5BB100B80136 /* VertexColor.swift */; };
+		79602E8F1C5D5CBB00B80136 /* VertexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79602E8D1C5D5BB100B80136 /* VertexColor.swift */; };
 		7992BBF81BF133AE0003D89E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992BBF71BF133AE0003D89E /* main.swift */; };
 		7992BC211BF13EBC0003D89E /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992BC201BF13EBC0003D89E /* StackTests.swift */; };
 		79BF6E1F1BF65B31000A8F0A /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF6E1E1BF65B31000A8F0A /* Queue.swift */; };
@@ -36,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		79602E8D1C5D5BB100B80136 /* VertexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VertexColor.swift; sourceTree = "<group>"; };
 		7992BBF41BF133AE0003D89E /* DataStructures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataStructures; sourceTree = BUILT_PRODUCTS_DIR; };
 		7992BBF71BF133AE0003D89E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		7992BC111BF13D100003D89E /* project.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = project.xcworkspace; path = DataStructures.xcodeproj/project.xcworkspace; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 				79BF6E281BF66019000A8F0A /* Graph.swift */,
 				79BF6E2B1BF660C7000A8F0A /* Vertex.swift */,
 				79BF6E2E1BF6623C000A8F0A /* Edge.swift */,
+				79602E8D1C5D5BB100B80136 /* VertexColor.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -226,6 +230,7 @@
 			files = (
 				79BF6E291BF66019000A8F0A /* Graph.swift in Sources */,
 				79BF6E221BF65B66000A8F0A /* Stack.swift in Sources */,
+				79602E8E1C5D5BB100B80136 /* VertexColor.swift in Sources */,
 				79BF6E2F1BF6623C000A8F0A /* Edge.swift in Sources */,
 				79BF6E1F1BF65B31000A8F0A /* Queue.swift in Sources */,
 				79BF6E2C1BF660C7000A8F0A /* Vertex.swift in Sources */,
@@ -237,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79602E8F1C5D5CBB00B80136 /* VertexColor.swift in Sources */,
 				79BF6E361BF6964A000A8F0A /* GraphTests.swift in Sources */,
 				79BF6E231BF65BF8000A8F0A /* Queue.swift in Sources */,
 				79BF6E241BF65BF8000A8F0A /* Stack.swift in Sources */,
