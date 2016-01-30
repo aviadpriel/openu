@@ -177,4 +177,35 @@ class GraphTesbts: XCTestCase {
         XCTAssertEqual(u.outDegree, 0)
     }
     
+    func testBFS() {
+        let g = Graph<Int>()
+        let v0 = Vertex(data: 0)
+        let v1 = Vertex(data: 1)
+        let v2 = Vertex(data: 2)
+        let v3 = Vertex(data: 3)
+        let v4 = Vertex(data: 4)
+        let v5 = Vertex(data: 5)
+        let v6 = Vertex(data: 6)
+        let v7 = Vertex(data: 7)
+        
+        let edges = [
+            Edge(source: v0, destination: v1),
+            Edge(source: v0, destination: v2),
+            Edge(source: v1, destination: v3),
+            Edge(source: v2, destination: v3),
+            Edge(source: v2, destination: v6),
+            Edge(source: v1, destination: v2),
+            Edge(source: v6, destination: v5),
+            Edge(source: v5, destination: v4),
+            Edge(source: v3, destination: v4),
+            Edge(source: v4, destination: v7)
+        ]
+        
+        edges.forEach({ g.addEdge($0)})
+        
+        let bfs = g.bfs(v0)
+        
+        
+        
+    }
 }

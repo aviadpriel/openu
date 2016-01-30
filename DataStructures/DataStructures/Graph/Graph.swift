@@ -9,6 +9,7 @@
 import Foundation
 
 class Graph<T> {
+    
     private var relations = Dictionary<Vertex<T>, Array<Vertex<T>>>()
     var directed = false
     var edges = [Edge<T>]()
@@ -42,5 +43,30 @@ class Graph<T> {
             return neighbors
         }
         return [Vertex<T>]()
+    }
+    
+    func bfs(startVertex: Vertex<T>) -> [[Vertex<T>]] {
+        //visited color = black
+        startVertex.color = .Black
+        
+        var layers = [[Vertex<T>]]()
+        let firstLayer = [startVertex]
+        layers.append(firstLayer)
+        var previousLayer = firstLayer
+        while !previousLayer.isEmpty  {
+            var currentLayer = [Vertex<T>]()
+            for v in previousLayer {
+                //get all non visited neighbors and mark them as visited
+                let nonVisited = v.neighbors.filter({ $0.color != .Black })
+                nonVisited.forEach({ $0.color = .Black })
+                currentLayer += nonVisited
+            }
+            layers.append(currentLayer)
+            previousLayer = currentLayer
+        }
+        
+        layers.removeLast() //last layer is always empty.
+        
+        return layers
     }
 }

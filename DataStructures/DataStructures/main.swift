@@ -8,10 +8,3 @@
 
 import Foundation
 
-
-let v = Vertex<Int>(data: 4)
-let u = Vertex<Int>(data: 4)
-
-print(v.hashValue)
-print(u.hashValue)
-
