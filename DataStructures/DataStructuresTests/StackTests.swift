@@ -74,17 +74,4 @@ class StackTests: XCTestCase {
         XCTAssertEqual(s.peek(), "two")
     }
     
-    func testStackPerformance() {
-        
-        measureBlock() {
-            let s = Stack<Int>()
-            for i in 1...50000 {
-                s.push(i)
-            }
-            
-            while !s.isEmpty() {
-                s.pop()
-            }
-        }
-    }
 }
