@@ -10,6 +10,7 @@ import Foundation
 
 class Graph<T> {
     private var relations = Dictionary<Vertex<T>, Array<Vertex<T>>>()
+    var directed = false
     var edges = [Edge<T>]()
     
     var vertices: [Vertex<T>] {
@@ -28,13 +29,18 @@ class Graph<T> {
         addVertex(newEdge.destination)
         
         relations[newEdge.source]?.append(newEdge.destination)
-        relations[newEdge.destination]?.append(newEdge.source)
+        
+        if !directed {
+            relations[newEdge.destination]?.append(newEdge.source)
+        }
         
         edges.append(newEdge)
     }
     
-    func neighborsForVertex(v: Vertex<T>) -> [Vertex<T>]? {
-        return self.relations[v]
+    func neighborsForVertex(v: Vertex<T>) -> [Vertex<T>] {
+        if let neighbors = self.relations[v] {
+            return neighbors
+        }
+        return [Vertex<T>]()
     }
-    
 }

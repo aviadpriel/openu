@@ -84,9 +84,9 @@ class GraphTesbts: XCTestCase {
         g.addEdge(e1)
         g.addEdge(e2)
         
-        let neighborsV = g.neighborsForVertex(v)!
-        let neighborsU = g.neighborsForVertex(u)!
-        let neighborsW = g.neighborsForVertex(w)!
+        let neighborsV = g.neighborsForVertex(v)
+        let neighborsU = g.neighborsForVertex(u)
+        let neighborsW = g.neighborsForVertex(w)
         
         XCTAssertEqual(neighborsV.count,2)
         XCTAssertTrue(neighborsV.contains(u))
@@ -103,4 +103,38 @@ class GraphTesbts: XCTestCase {
         XCTAssertFalse(neighborsW.contains(w))
         XCTAssertFalse(neighborsW.contains(u))
     }
+    
+    func testNeighbors_directedGraph() {
+        let g = Graph<Int>()
+        g.directed = true
+        let v = Vertex(data: 5)
+        let u = Vertex(data: 6)
+        let w = Vertex(data: 7)
+        
+        let e1 = Edge(source: v, destination: u)
+        let e2 = Edge(source: v, destination: w)
+        
+        g.addEdge(e1)
+        g.addEdge(e2)
+        
+        let neighborsV = g.neighborsForVertex(v)
+        let neighborsU = g.neighborsForVertex(u)
+        let neighborsW = g.neighborsForVertex(w)
+        
+        XCTAssertEqual(neighborsV.count,2)
+        XCTAssertTrue(neighborsV.contains(u))
+        XCTAssertTrue(neighborsV.contains(w))
+        XCTAssertFalse(neighborsV.contains(v))
+        
+        XCTAssertEqual(neighborsU.count,0)
+        XCTAssertFalse(neighborsU.contains(v))
+        XCTAssertFalse(neighborsU.contains(w))
+        XCTAssertFalse(neighborsU.contains(u))
+        
+        XCTAssertEqual(neighborsW.count,0)
+        XCTAssertFalse(neighborsW.contains(v))
+        XCTAssertFalse(neighborsW.contains(w))
+        XCTAssertFalse(neighborsW.contains(u))
+    }
+    
 }

@@ -10,7 +10,7 @@ import Foundation
 
 class Vertex<T>: NSObject {
     var data: T
-    var graph: Graph<T>?
+    weak var graph: Graph<T>?
     
     var neighbors: [Vertex<T>] {
         if let neighbors = graph?.neighborsForVertex(self) {
