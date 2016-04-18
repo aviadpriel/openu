@@ -8,7 +8,7 @@
 #include "logger.h"
 #include <stdarg.h>
 
-static log_level current_log_level = ERROR;
+static log_level current_log_level = INFO;
 
 void logger(log_level level, const char* message, ...)
 {

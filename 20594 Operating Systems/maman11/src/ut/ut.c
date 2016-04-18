@@ -19,7 +19,7 @@
 #define QUANTUM_TIME 1 //in seconds
 #define VTIME_MS 100
 
-static volatile ut_slot *thread_table;
+static ut_slot *thread_table;
 static volatile int spawned_threads = 0;
 static volatile int max_threads;
 static volatile tid_t current_thread;
@@ -165,7 +165,11 @@ int ut_start(void)
 	logger(DEBUG, "swapping context");
 	alarm(QUANTUM_TIME);
 	ucontext_t uctx_main;
-	swapcontext(&uctx_main, &(thread_table[current_thread]->uc));
+	if(swapcontext(&uctx_main, &(thread_table[current_thread]->uc)) == -1) {
+		logger(ERROR, "error swapping context. Exiting");
+		perror("error swapping context: ");
+		return SYS_ERR;
+	}
 	logger(ERROR, "Error swapping context. we should never get here!");
 	return SUCCESS;
 }
