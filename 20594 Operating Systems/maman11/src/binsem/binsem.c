@@ -7,6 +7,7 @@
 
 #include "binsem.h"
 #include <signal.h>
+#include <stdio.h>
 
 void binsem_init(sem_t *s, int init_val)
 {
@@ -22,7 +23,6 @@ int binsem_down(sem_t *s)
 {
 	while(xchg(s, 0) == 0) {
 		//yield thread
-		sleep(2);
 		if(raise(SIGALRM) < 0 ) {
 			perror("syscall raise failed: ");
 			return -1;

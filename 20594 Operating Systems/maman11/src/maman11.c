@@ -14,6 +14,7 @@
 #include "logger/logger.h"
 #include "ut/ut.h"
 #include "binsem/binsem.h"
+#include <unistd.h>
 
 sem_t mySem;
 

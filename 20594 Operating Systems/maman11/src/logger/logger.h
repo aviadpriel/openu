@@ -16,8 +16,6 @@ typedef enum {
 	NONE
 }log_level;
 
-static log_level current_log_level = DEBUG;
-
-void log(log_level level, const char* message, ...);
+void logger(log_level level, const char* message, ...);
 
 #endif /* LOGGER_H_ */

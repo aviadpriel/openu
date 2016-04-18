@@ -8,7 +8,9 @@
 #include "logger.h"
 #include <stdarg.h>
 
-void log(log_level level, const char* message, ...)
+static log_level current_log_level = ERROR;
+
+void logger(log_level level, const char* message, ...)
 {
 	if (level > current_log_level || current_log_level == NONE) {
 		return;
