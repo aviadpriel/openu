@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
-#include "logger/logger.h"
 #include "ut/ut.h"
 #include "binsem/binsem.h"
 #include <unistd.h>

@@ -1,11 +1,13 @@
 FLAGS = -Wall  -L./ -m32
 
+all: binsem.a ut.a clean
 
-makeall:
+ut.a:
 	gcc $(FLAGS)  -c ut/ut.c
 	ar rcu libut.a ut.o
 	ranlib libut.a 
-	
+
+binsem.a:
 	gcc $(FLAGS)  -c binsem/binsem.c
 	ar rcu libbinsem.a binsem.o
 	ranlib libbinsem.a 
