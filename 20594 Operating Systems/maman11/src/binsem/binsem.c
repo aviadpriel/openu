@@ -1,8 +1,8 @@
 /*
- * binsem.c
- *
- *  Created on: Apr 11, 2016
- *      Author: stas
+ *  binsem.c
+ *  Implementation of a binary semaphore in C language.
+ *  Stas Seldin
+ *  ID: 311950943
  */
 
 #include "binsem.h"

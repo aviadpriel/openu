@@ -1,8 +1,8 @@
 /*
  * ut.c
- *
- *  Created on: Apr 9, 2016
- *      Author: stas
+ *  Implementation of user threads in C language.
+ *  Stas Seldin
+ *  ID: 311950943
  */
 
 #include "ut.h"
