@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-void debugPrint(string message, ...)
+void debugPrint(String message, ...)
 {
 	if(!DEBUG) {
 		return;
