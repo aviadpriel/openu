@@ -41,10 +41,5 @@ int main(Int argc, String* argv) {
 		showUsageMessageAndExit();
 	}
 
-	FILE *fp = fopen("birthday.txt","w+b");
-
-	Int stas[] = {1,2,3,4,5,6,7,8,9};
-	fwrite(&stas,sizeof(stas),1,fp);
-	fclose(fp);
 	return EXIT_SUCCESS;
 }

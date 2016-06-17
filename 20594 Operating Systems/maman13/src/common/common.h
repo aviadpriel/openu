@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <libgen.h>
+#include <dirent.h>
 
 //types
 typedef int32_t Int;
@@ -29,7 +30,7 @@ typedef enum {
 ItemType;
 
 //constants
-#define FILENAME_LENGTH 512
+#define FILENAME_LENGTH 256
 #define DEBUG true
 
 //structs
@@ -40,9 +41,14 @@ typedef struct {
 	gid_t gid;
 	off_t size;
 	struct timespec modTime;
+	Int children;
 } BackupItem;
 
 //functions
 void debugPrint(String message, ...);
+void fcpy(FILE *src, FILE *dest, Long bytes);
+void printItem(BackupItem info);
+String pathComponents(String path1, String path2);
+Bool equalStrings(String str1, String str2);
 
 #endif /* COMMON_H_ */
