@@ -9,17 +9,40 @@
 #define COMMON_H_
 
 #include <stdint.h>
+#include <sys/stat.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <libgen.h>
 
 //types
 typedef int32_t Int;
 typedef int64_t Long;
-typedef const char* String;
+typedef char* String;
 typedef enum { false = 0, true = 1 } Bool;
+typedef enum {
+	ItemTypeFile = 0,
+	ItemTypeFolder = 1,
+	ItemTypeSLink = 2,
+	ItemTypeUnknown = 3
+}
+ItemType;
 
 //constants
-#define FILENAME_LENGTH 4096
+#define FILENAME_LENGTH 512
 #define DEBUG true
 
+//structs
+typedef struct {
+	char name[FILENAME_LENGTH];
+	ItemType type;
+	uid_t uid;
+	gid_t gid;
+	off_t size;
+	struct timespec modTime;
+} BackupItem;
+
+//functions
 void debugPrint(String message, ...);
 
 #endif /* COMMON_H_ */

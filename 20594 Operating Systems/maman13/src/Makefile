@@ -1,2 +1,2 @@
 mkbkp: 
-	gcc backup/backup.c restore/restore.c common/common.c maman13.c  -Wall -o mkbkp
+	gcc common/common.c backup/backup.c restore/restore.c  maman13.c  -Wall -o mkbkp

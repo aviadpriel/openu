@@ -10,5 +10,6 @@
 
 #include "../common/common.h"
 
+void restore(String fileToRestore);
 
 #endif /* RESTORE_H_ */

@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "common/common.h"
+#include "backup/backup.h"
+#include "restore/restore.h"
 
 void showUsageMessageAndExit()
 {
@@ -29,11 +31,11 @@ int main(Int argc, String* argv) {
 	if(strcmp(argv[1],"-c") == 0 && argc >= 4) {
 		String backupFileName = argv[2];
 		String pathToBackup = argv[3];
-		debugPrint("backing up %s to %s",pathToBackup, backupFileName);
+		backup(backupFileName, pathToBackup);
 	}
 	else if(strcmp(argv[1],"-x") == 0 && argc >= 3) {
 		String fileToRestore = argv[2];
-		debugPrint("restoring %s", fileToRestore);
+		restore(fileToRestore);
 	}
 	else {
 		showUsageMessageAndExit();
