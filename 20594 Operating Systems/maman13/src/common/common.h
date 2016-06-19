@@ -32,6 +32,7 @@ ItemType;
 
 //constants
 #define FILENAME_LENGTH 256
+#define PATH_LENGTH 1024
 #define DEBUG true
 #define ERROR -1
 
@@ -44,6 +45,7 @@ typedef struct {
 	off_t size;
 	struct timespec modTime;
 	Int children;
+	char linkPath[PATH_LENGTH];
 	char separator;
 } BackupItem;
 
@@ -58,5 +60,7 @@ void safeClose(FILE *file);
 void safeMkdir(String path);
 DIR* safeOpenDir(String path);
 void safeCloseDir(DIR *dir);
+void safeReadLink(String path, String buffer, Int bufferSize);
+void safeSymlink(String oldname, String newname);
 
 #endif /* COMMON_H_ */

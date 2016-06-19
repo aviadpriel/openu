@@ -49,7 +49,10 @@ void fcpy(FILE *src, FILE *dest, Long bytes)
 {
 	Int c, i = 0;
 	while((c = fgetc(src)) != EOF && i++ < bytes) {
-		fputc(c, dest);
+		if(fputc(c, dest) == ERROR) {
+			perror("Fatal: error writing to file");
+			exit(1);
+		}
 	}
 }
 
@@ -101,5 +104,22 @@ void safeCloseDir(DIR *dir) {
     	perror("Error closing dir");
     	exit(1);
     }
+}
+
+void safeReadLink(String path, String buffer, Int bufferSize) {
+	Int readLinkBytes = readlink(path, buffer, bufferSize - 1);
+	if(readLinkBytes == ERROR) {
+		perror("Read link error");
+		exit(EXIT_FAILURE);
+	}
+	buffer[readLinkBytes] = '\0';
+}
+
+void safeSymlink(String oldname, String newname)
+{
+	if(symlink(oldname, newname) == ERROR) {
+		perror("Error creating symlink");
+		exit(EXIT_FAILURE);
+	}
 }
 

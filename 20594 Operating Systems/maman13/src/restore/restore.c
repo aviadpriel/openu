@@ -30,7 +30,18 @@ void restoreFile(String path, BackupItem item, FILE *sourceFile)
 
 	fcpy(sourceFile, targetFile, item.size);
 	safeClose(targetFile);
-	fseek(sourceFile, -1 ,SEEK_CUR);
+
+	//seek 1 byte backwards, this fixes a bug.
+	if(fseek(sourceFile, -1 ,SEEK_CUR) == ERROR) {
+		perror("fseek error");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void restoreLink(String path, BackupItem item)
+{
+	debugPrint("Restoring symlink %s", path);
+	safeSymlink(item.linkPath, path);
 }
 
 void restoreFolder(String path, BackupItem item, FILE *sourceFile)
@@ -44,8 +55,10 @@ void restoreFolder(String path, BackupItem item, FILE *sourceFile)
 		String childPath = pathComponents(path,child.name);
 		switch(child.type) {
 		case ItemTypeFile:
-		case ItemTypeSLink:
 			restoreFile(childPath, child, sourceFile);
+			break;
+		case ItemTypeSLink:
+			restoreLink(childPath, child);
 			break;
 		case ItemTypeFolder:
 			restoreFolder(childPath, child, sourceFile);
@@ -70,8 +83,10 @@ void restore(String sourcePath)
 	debugPrint("cursor at %d",ftell(sourceFile));
 	BackupItem rootItem = readItem(sourceFile);
 	switch(rootItem.type) {
-	case ItemTypeFile:
 	case ItemTypeSLink:
+		restoreLink(rootItem.name, rootItem);
+		break;
+	case ItemTypeFile:
 		restoreFile(rootItem.name, rootItem, sourceFile);
 		break;
 	case ItemTypeFolder:

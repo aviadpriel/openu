@@ -41,6 +41,9 @@ BackupItem getItemInfo(String path)
 	for(i=0; i<FILENAME_LENGTH; i++) {
 		item.name[i] = 0;
 	}
+	for(i=0; i<PATH_LENGTH; i++) {
+		item.linkPath[i]=0;
+	}
 	strcpy(item.name, basename(path));
 
 	if(S_ISREG(s.st_mode)) {
@@ -54,6 +57,8 @@ BackupItem getItemInfo(String path)
 	else if(S_ISLNK(s.st_mode)) {
 		item.type = ItemTypeSLink;
 		item.children = 0;
+		item.size = 0;
+		safeReadLink(path, item.linkPath, PATH_LENGTH - 1);
 	}
 
 	return item;
@@ -73,6 +78,17 @@ void writeFile(String sourcePath, FILE *targetFile)
 	FILE *sourceFile = fopen(sourcePath, "r");
 	fcpy(sourceFile, targetFile, info.size);
 	safeClose(sourceFile);
+}
+
+void writeLink(String sourcePath, FILE *targetFile)
+{
+	//get meta data
+	BackupItem info = getItemInfo(sourcePath);
+	debugPrint("Writing symlink '%s'",sourcePath);
+	printItem(info);
+
+	//write meta data
+	fwrite(&info,sizeof(BackupItem),1,targetFile);
 }
 
 void writeFolder(String sourcePath, FILE *targetFile)
@@ -96,8 +112,10 @@ void writeFolder(String sourcePath, FILE *targetFile)
         String childPath = pathComponents(sourcePath, dp->d_name);
         switch(dp->d_type) {
         case DT_REG:
-        case DT_LNK:
         	writeFile(childPath, targetFile);
+        	break;
+        case DT_LNK:
+        	writeLink(childPath, targetFile);
         	break;
         case DT_DIR:
         	writeFolder(childPath, targetFile);
@@ -119,12 +137,12 @@ void backup(String targetPath, String sourcePath)
 	FILE *targetFile = fopen(targetPath, "w+");
 	if(targetFile == NULL) {
 		perror("Could not create file");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	if(pathExists(sourcePath) == false) {
 		printf("Could not find path '%s'\n",sourcePath);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	BackupItem rootItem = getItemInfo(sourcePath);
@@ -139,7 +157,7 @@ void backup(String targetPath, String sourcePath)
 	case ItemTypeUnknown:
 		printf("Cannot backup '%s': Unknown type",sourcePath);
 		safeClose(targetFile);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	safeClose(targetFile);
