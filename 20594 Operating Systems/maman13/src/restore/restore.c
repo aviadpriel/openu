@@ -36,12 +36,18 @@ void restoreFile(String path, BackupItem item, FILE *sourceFile)
 		perror("fseek error");
 		exit(EXIT_FAILURE);
 	}
+
+	safeChown(path, item.uid, item.gid);
+	safeChmod(path, item.mode);
+	setModTime(path, item.modTime);
 }
 
 void restoreLink(String path, BackupItem item)
 {
 	debugPrint("Restoring symlink %s", path);
 	safeSymlink(item.linkPath, path);
+	safeChown(path, item.uid, item.gid);
+	safeChmod(path, item.mode);
 }
 
 void restoreFolder(String path, BackupItem item, FILE *sourceFile)
@@ -69,6 +75,10 @@ void restoreFolder(String path, BackupItem item, FILE *sourceFile)
 		}
 		debugPrint("endfor, cursor at %d",ftell(sourceFile));
 	}
+
+	safeChown(path, item.uid, item.gid);
+	safeChmod(path, item.mode);
+	setModTime(path, item.modTime);
 }
 
 void restore(String sourcePath)

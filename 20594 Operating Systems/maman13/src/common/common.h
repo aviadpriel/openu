@@ -16,6 +16,7 @@
 #include <libgen.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <utime.h>
 
 //types
 typedef int32_t Int;
@@ -43,6 +44,7 @@ typedef struct {
 	uid_t uid;
 	gid_t gid;
 	off_t size;
+	mode_t mode;
 	struct timespec modTime;
 	Int children;
 	char linkPath[PATH_LENGTH];
@@ -56,11 +58,17 @@ void printItem(BackupItem info);
 String pathComponents(String path1, String path2);
 Bool pathExists(String path);
 Bool equalStrings(String str1, String str2);
+void setModTime(String path, struct timespec modTime);
+
+//safe wrappers
 void safeClose(FILE *file);
 void safeMkdir(String path);
 DIR* safeOpenDir(String path);
 void safeCloseDir(DIR *dir);
 void safeReadLink(String path, String buffer, Int bufferSize);
 void safeSymlink(String oldname, String newname);
+void safeChown(String filename, uid_t owner, gid_t group);
+void safeChmod(String filename, mode_t mode);
+void safeUtime(String filename, const struct utimbuf *times);
 
 #endif /* COMMON_H_ */

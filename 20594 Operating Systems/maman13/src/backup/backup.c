@@ -35,6 +35,7 @@ BackupItem getItemInfo(String path)
 	item.gid = s.st_gid;
 	item.size = s.st_size;
 	item.modTime = s.st_mtim;
+	item.mode = s.st_mode;
 	item.separator = '@';
 
 	Int i;
@@ -72,10 +73,15 @@ void writeFile(String sourcePath, FILE *targetFile)
 	printItem(info);
 
 	//write meta data
-	fwrite(&info,sizeof(BackupItem),1,targetFile);
+	fwrite(&info, sizeof(BackupItem),1,targetFile);
 
 	//write data
 	FILE *sourceFile = fopen(sourcePath, "r");
+	if(sourceFile == NULL) {
+		perror("Could not read file");
+		exit(EXIT_FAILURE);
+	}
+
 	fcpy(sourceFile, targetFile, info.size);
 	safeClose(sourceFile);
 }
