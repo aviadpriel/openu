@@ -30,6 +30,7 @@ void restoreFile(String path, BackupItem item, FILE *sourceFile)
 
 	fcpy(sourceFile, targetFile, item.size);
 	safeClose(targetFile);
+	fseek(sourceFile, -1 ,SEEK_CUR);
 }
 
 void restoreFolder(String path, BackupItem item, FILE *sourceFile)
@@ -38,6 +39,7 @@ void restoreFolder(String path, BackupItem item, FILE *sourceFile)
 	safeMkdir(path);
 	Int i;
 	for(i = 0; i < item.children; i++) {
+		debugPrint("cursor at %d",ftell(sourceFile));
 		BackupItem child = readItem(sourceFile);
 		String childPath = pathComponents(path,child.name);
 		switch(child.type) {
@@ -49,21 +51,23 @@ void restoreFolder(String path, BackupItem item, FILE *sourceFile)
 			restoreFolder(childPath, child, sourceFile);
 			break;
 		default:
-			printf("Error: Unknown archive type");
+			printf("Error: Unknown file type %d\n",child.type);
 			exit(1);
 		}
+		debugPrint("endfor, cursor at %d",ftell(sourceFile));
 	}
 }
 
 void restore(String sourcePath)
 {
-	debugPrint("restoring file '%s'", sourcePath);
+	debugPrint("restoring archive '%s'", sourcePath);
 	FILE *sourceFile = fopen(sourcePath,"r");
 	if(sourceFile == NULL) {
 		perror("Could not open archive file");
 		exit(1);
 	}
 
+	debugPrint("cursor at %d",ftell(sourceFile));
 	BackupItem rootItem = readItem(sourceFile);
 	switch(rootItem.type) {
 	case ItemTypeFile:
@@ -74,7 +78,7 @@ void restore(String sourcePath)
 		restoreFolder(rootItem.name, rootItem, sourceFile);
 		break;
 	default:
-		printf("Error: Unknown archive type");
+		printf("Error: Unknown archive type\n");
 		exit(1);
 	}
 

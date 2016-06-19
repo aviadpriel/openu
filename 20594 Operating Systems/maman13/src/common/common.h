@@ -44,6 +44,7 @@ typedef struct {
 	off_t size;
 	struct timespec modTime;
 	Int children;
+	char separator;
 } BackupItem;
 
 //functions

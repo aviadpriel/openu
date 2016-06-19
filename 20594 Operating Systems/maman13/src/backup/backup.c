@@ -35,6 +35,7 @@ BackupItem getItemInfo(String path)
 	item.gid = s.st_gid;
 	item.size = s.st_size;
 	item.modTime = s.st_mtim;
+	item.separator = '@';
 
 	Int i;
 	for(i=0; i<FILENAME_LENGTH; i++) {
