@@ -15,6 +15,7 @@
 #include <string.h>
 #include <libgen.h>
 #include <dirent.h>
+#include <unistd.h>
 
 //types
 typedef int32_t Int;
@@ -32,6 +33,7 @@ ItemType;
 //constants
 #define FILENAME_LENGTH 256
 #define DEBUG true
+#define ERROR -1
 
 //structs
 typedef struct {
@@ -49,6 +51,11 @@ void debugPrint(String message, ...);
 void fcpy(FILE *src, FILE *dest, Long bytes);
 void printItem(BackupItem info);
 String pathComponents(String path1, String path2);
+Bool pathExists(String path);
 Bool equalStrings(String str1, String str2);
+void safeClose(FILE *file);
+void safeMkdir(String path);
+DIR* safeOpenDir(String path);
+void safeCloseDir(DIR *dir);
 
 #endif /* COMMON_H_ */

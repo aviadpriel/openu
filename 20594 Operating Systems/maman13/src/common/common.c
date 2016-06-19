@@ -62,6 +62,44 @@ String pathComponents(String path1, String path2)
 	return result;
 }
 
+Bool pathExists(String path) {
+	if(access( path, F_OK ) != -1) {
+		return true;
+	}
+	return false;
+}
+
 Bool equalStrings(String str1, String str2) {
 	return strcmp(str1, str2) == 0;
 }
+
+void safeClose(FILE *file) {
+	if(fclose(file) == ERROR) {
+    	perror("Error closing file");
+    	exit(1);
+	}
+}
+
+void safeMkdir(String path) {
+	if(mkdir(path, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == ERROR) {
+		perror("unable to create dir");
+		exit(1);
+	}
+}
+
+DIR* safeOpenDir(String path) {
+	DIR *dir = opendir(path);
+    if (dir == NULL) {
+    	perror("unable to opendir");
+    	exit(1);
+    }
+    return dir;
+}
+
+void safeCloseDir(DIR *dir) {
+    if(closedir(dir) == ERROR) {
+    	perror("Error closing dir");
+    	exit(1);
+    }
+}
+

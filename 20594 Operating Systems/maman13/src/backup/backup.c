@@ -11,7 +11,8 @@ Int getNumberOfChildren(String folderPath)
 {
 	debugPrint("Count items for folder '%s'",folderPath);
 	Int count = 0;
-    DIR *dir = dir = opendir(folderPath);
+    DIR *dir = safeOpenDir(folderPath);
+
     struct dirent *dp;
     while ((dp = readdir(dir)) != NULL) {
         if ( equalStrings(dp->d_name, ".") || equalStrings(dp->d_name, "..")) {
@@ -19,7 +20,7 @@ Int getNumberOfChildren(String folderPath)
         }
     	count++;
     }
-    closedir(dir);
+    safeCloseDir(dir);
     debugPrint("Found %d items", count);
     return count;
 }
@@ -70,7 +71,7 @@ void writeFile(String sourcePath, FILE *targetFile)
 	//write data
 	FILE *sourceFile = fopen(sourcePath, "r");
 	fcpy(sourceFile, targetFile, info.size);
-	fclose(sourceFile);
+	safeClose(sourceFile);
 }
 
 void writeFolder(String sourcePath, FILE *targetFile)
@@ -84,7 +85,7 @@ void writeFolder(String sourcePath, FILE *targetFile)
 	fwrite(&folderInfo,sizeof(BackupItem),1,targetFile);
 
 	//write data
-    DIR *dir = dir = opendir(sourcePath);
+    DIR *dir = dir = safeOpenDir(sourcePath);
     struct dirent *dp;
     while ((dp=readdir(dir)) != NULL) {
         if ( equalStrings(dp->d_name, ".") || equalStrings(dp->d_name, "..")) {
@@ -106,7 +107,8 @@ void writeFolder(String sourcePath, FILE *targetFile)
 
         free(childPath);
     }
-    closedir(dir);
+
+    safeCloseDir(dir);
 }
 
 void backup(String targetPath, String sourcePath)
@@ -115,15 +117,12 @@ void backup(String targetPath, String sourcePath)
 
 	FILE *targetFile = fopen(targetPath, "w+");
 	if(targetFile == NULL) {
-		printf("Could not create file '%s'",targetPath);
+		perror("Could not create file");
 		exit(1);
 	}
 
-	struct stat s;
-	stat(sourcePath, &s);
-
-	if(targetFile == NULL) {
-		printf("Could not find path '%s'",sourcePath);
+	if(pathExists(sourcePath) == false) {
+		printf("Could not find path '%s'\n",sourcePath);
 		exit(1);
 	}
 
@@ -138,9 +137,9 @@ void backup(String targetPath, String sourcePath)
 		break;
 	case ItemTypeUnknown:
 		printf("Cannot backup '%s': Unknown type",sourcePath);
-		fclose(targetFile);
+		safeClose(targetFile);
 		exit(1);
 	}
 
-	fclose(targetFile);
+	safeClose(targetFile);
 }
