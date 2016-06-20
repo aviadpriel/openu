@@ -17,6 +17,7 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <utime.h>
+#include <fcntl.h>
 
 //types
 typedef int32_t Int;
@@ -34,7 +35,7 @@ ItemType;
 //constants
 #define FILENAME_LENGTH 256
 #define PATH_LENGTH 1024
-#define DEBUG true
+#define DEBUG false
 #define ERROR -1
 
 //structs

@@ -73,7 +73,10 @@ void writeFile(String sourcePath, FILE *targetFile)
 	printItem(info);
 
 	//write meta data
-	fwrite(&info, sizeof(BackupItem),1,targetFile);
+	if(fwrite(&info, sizeof(BackupItem),1,targetFile) == 0) {
+		perror("Error writing to file");
+		exit(EXIT_FAILURE);
+	}
 
 	//write data
 	FILE *sourceFile = fopen(sourcePath, "r");
@@ -139,6 +142,11 @@ void writeFolder(String sourcePath, FILE *targetFile)
 void backup(String targetPath, String sourcePath)
 {
 	debugPrint("backing up '%s' to file '%s'",sourcePath, targetPath);
+
+	if(equalStrings(sourcePath, ".") || equalStrings(sourcePath, "..")) {
+		printf("Invalid path\n");
+		exit(EXIT_FAILURE);
+	}
 
 	FILE *targetFile = fopen(targetPath, "w+");
 	if(targetFile == NULL) {

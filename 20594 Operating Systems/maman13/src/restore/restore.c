@@ -23,9 +23,11 @@ BackupItem readItem(FILE *sourceFile)
 void restoreFile(String path, BackupItem item, FILE *sourceFile)
 {
 	debugPrint("Restoring file %s", path);
+
 	FILE *targetFile = fopen(path, "w+");
 	if(targetFile == NULL) {
 		perror("Cannot open file for writing");
+		exit(EXIT_FAILURE);
 	}
 
 	fcpy(sourceFile, targetFile, item.size);
@@ -92,6 +94,12 @@ void restore(String sourcePath)
 
 	debugPrint("cursor at %d",ftell(sourceFile));
 	BackupItem rootItem = readItem(sourceFile);
+
+	if(pathExists(rootItem.name)) {
+		printf("Error: '%s' already exists\n", rootItem.name);
+		exit(EXIT_FAILURE);
+	}
+
 	switch(rootItem.type) {
 	case ItemTypeSLink:
 		restoreLink(rootItem.name, rootItem);
